@@ -26,7 +26,7 @@ import (
 
 func main() {
 	session.InitManager(
-		session.SetStore(mongo.NewStore("mongodb://127.0.0.1:27017","test","session")),
+		session.SetStore(mongo.NewStore(context.Background(), "mongodb://127.0.0.1:27017","test","session")),
 	)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

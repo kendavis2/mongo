@@ -8,13 +8,13 @@ import (
 )
 
 const (
-	url    = "127.0.0.1:27017"
+	url    = "mongodb://127.0.0.1:27017"
 	dbName = "mydb_test"
 	cName  = "session"
 )
 
 func TestStore(t *testing.T) {
-	mstore := NewStore(url, dbName, cName)
+	mstore := NewStore(context.Background(), url, dbName, cName)
 	defer mstore.Close()
 
 	Convey("Test mongo storage operation", t, func() {
@@ -54,7 +54,7 @@ func TestStore(t *testing.T) {
 }
 
 func TestManagerStore(t *testing.T) {
-	mstore := NewStore(url, dbName, cName)
+	mstore := NewStore(context.Background(), url, dbName, cName)
 	defer mstore.Close()
 
 	Convey("Test mongo-based storage management operations", t, func() {
